@@ -9,9 +9,10 @@ const TableCustomerItems = ({ users, type }) => {
 		(state) => state.customer
 	);
 
+	let userList
 	if(!customerGetLoading ){
 
-		const userList = users.map((user, index) => {
+		userList = users.map((user, index) => {
 			let data;
 	
 			if (type === "merchant") {
