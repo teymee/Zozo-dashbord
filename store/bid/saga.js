@@ -4,6 +4,7 @@ import { API } from "../API/Api";
 import {
 	actionAdminFetchAuctionsSuccess,
 	actionApproveEventSuccess,
+	actionCancelEventSuccess,
 	actionCreateBidEventSuccess,
 	actionTypes,
 } from "./action";
@@ -48,7 +49,7 @@ const sagaAdminFetchBidEvent = async (status) => {
 
 		console.log(status);
 		data = axios.get(url, config).then((response) => {
-			console.log(response.data.bidding_event)
+			console.log(response.data.bidding_event);
 			const approvedBids = response.data.bidding_event.filter((bid) => {
 				return bid.approved === true;
 			});
@@ -58,7 +59,7 @@ const sagaAdminFetchBidEvent = async (status) => {
 		const url = API.ADMIN_BASE_URL + "/bidding/status";
 
 		const eventStatus = {
-			status,	
+			status,
 		};
 
 		console.log(eventStatus);
@@ -88,6 +89,24 @@ const sagaApproveBidEvent = async (event_id) => {
 	return data;
 };
 
+const sagaCancelBidEvent = async (event_id) => {
+	
+	const url = API.ADMIN_BASE_URL + "/bidding/cancel/" + event_id;
+	const config = {
+		headers: {
+			Authorization: "Bearer " + API.TOKEN,
+		},
+	};
+	console.log(url);
+	const data = axios.post(url, event_id, config).then((response) => {
+		console.log(response.data);
+		return response.data;
+	});
+
+	return data;
+};
+
+
 function* createBidEvent(payload) {
 	try {
 		const isEventAdded = yield call(sagaCreateBidEvent, payload.event);
@@ -100,7 +119,7 @@ function* createBidEvent(payload) {
 function* adminFetchBidEvent(payload) {
 	try {
 		const getAllBidEvent = yield call(sagaAdminFetchBidEvent, payload.status);
-		console.log(getAllBidEvent)
+		console.log(getAllBidEvent);
 		yield put(actionAdminFetchAuctionsSuccess(getAllBidEvent));
 	} catch (err) {
 		console.log(err);
@@ -117,10 +136,22 @@ function* approveBidEvent(payload) {
 	}
 }
 
+function* cancelBidEvent(payload) {
+	try {
+		const isCancelled = yield call(sagaCancelBidEvent, payload.event_id);
+		console.log(isCancelled);
+		yield put(actionCancelEventSuccess(isCancelled));
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+
 export default function* rootSaga() {
 	yield all([takeEvery(actionTypes.CREATE_BID_EVENT, createBidEvent)]);
 	yield all([
 		takeEvery(actionTypes.ADMIN_FETCH_BID_EVENTS, adminFetchBidEvent),
 	]);
 	yield all([takeEvery(actionTypes.APPROVE_BID_EVENT, approveBidEvent)]);
+	yield all([takeEvery(actionTypes.CANCEL_BID_EVENT, approveBidEvent)]);
 }

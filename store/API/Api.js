@@ -8,14 +8,11 @@ export const API = {
 
 export const dateFormat = (timeFormat) => {
 	const event = new Date(timeFormat);
- const time= event.toString();
+	const time = event.toString();
 
 	const totalStringLength = time.length;
 	const stringToSlice = time.indexOf("G");
 	const finalDate = time.slice(0, stringToSlice);
-	console.log(totalStringLength);
-	console.log(time);
-	console.log(stringToSlice);
-
+	console.log(totalStringLength)
 	return finalDate;
 };
