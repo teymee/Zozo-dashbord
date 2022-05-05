@@ -10,7 +10,7 @@ const MenuSidebar = () => {
 			url: "/",
 			icon: "icon-home",
 		},
-		
+
 		{
 			text: "Categories",
 			url: "/categories",
@@ -42,8 +42,7 @@ const MenuSidebar = () => {
 			url: "/bids/completed",
 			icon: "icon-cog",
 		},
-	
-		
+
 		{
 			text: "Orders",
 			url: "/orders",
@@ -59,11 +58,11 @@ const MenuSidebar = () => {
 			url: "/merchants",
 			icon: "icon-users2",
 		},
-		{
-			text: "Shipping",
-			url: "/shipping",
-			icon: "icon-cog",
-		},
+		// {
+		// 	text: "Shipping",
+		// 	url: "/shipping",
+		// 	icon: "icon-cog",
+		// },
 		// {
 		// 	text: "Cashout Requests",
 		// 	url: "/cashout_requests",
@@ -74,7 +73,7 @@ const MenuSidebar = () => {
 		// 	url: "/approved_cashouts",
 		// 	icon: "icon-cog",
 		// },
-	
+
 		{
 			text: "Settings",
 			url: "/settings",

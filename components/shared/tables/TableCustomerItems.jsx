@@ -5,16 +5,15 @@ import MerchantColumn from "./table-columns/MerchantColumn";
 import { useSelector } from "react-redux";
 
 const TableCustomerItems = ({ users, type }) => {
-	const { customers, customerGetLoading } = useSelector(
-		(state) => state.customer
-	);
+	const { customerGetLoading } = useSelector((state) => state.customer);
 
-	let userList
-	if(!customerGetLoading ){
-
-		userList = users.map((user, index) => {
+	let userList;
+	let userss = []
+	if (!customerGetLoading) {
+		userss = users
+		userList = userss.map((user, index) => {
 			let data;
-	
+
 			if (type === "merchant") {
 				data = <MerchantColumn user={user} key={index} num={index} />;
 			} else if (type === "customer") {
