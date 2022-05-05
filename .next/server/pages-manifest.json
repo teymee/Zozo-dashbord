@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/bids/approved": "pages/bids/approved.js",
-  "/bids/completed": "pages/bids/completed.js"
+  "/": "pages/index.js",
+  "/customers": "pages/customers.js"
 }

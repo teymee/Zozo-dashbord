@@ -4,5 +4,15 @@
       "id": "./node_modules/next/dist/client/dev/noop.js",
       "file": "static/chunks/0.js"
     }
+  ],
+  "react-apexcharts": [
+    {
+      "id": "./node_modules/apexcharts/dist/apexcharts.common.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/react-apexcharts/dist/react-apexcharts.min.js",
+      "file": "static/chunks/1.js"
+    }
   ]
 }

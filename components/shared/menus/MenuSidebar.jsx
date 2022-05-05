@@ -64,16 +64,16 @@ const MenuSidebar = () => {
 			url: "/shipping",
 			icon: "icon-cog",
 		},
-		{
-			text: "Cashout Requests",
-			url: "/cashout_requests",
-			icon: "icon-cog",
-		},
-		{
-			text: "Approved Cashouts",
-			url: "/approved_cashouts",
-			icon: "icon-cog",
-		},
+		// {
+		// 	text: "Cashout Requests",
+		// 	url: "/cashout_requests",
+		// 	icon: "icon-cog",
+		// },
+		// {
+		// 	text: "Approved Cashouts",
+		// 	url: "/approved_cashouts",
+		// 	icon: "icon-cog",
+		// },
 	
 		{
 			text: "Settings",
