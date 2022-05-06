@@ -13,7 +13,7 @@ export function login(loginCred) {
 }
 
 export function loginSuccess(isLogin) {
-    
+    console.log(isLogin)
     return { type: actionTypes.LOGIN_SUCCESS, isLogin };
 }
 

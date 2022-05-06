@@ -8,12 +8,14 @@ import { useDispatch } from "react-redux";
 import { toggleDrawerMenu } from "~/store/app/action";
 import CardTopCountries from "~/components/shared/cards/CardTopCountries";
 import styles from "./dashboardExtrastyle.module.css";
+import authRoute from "./HOC/authRoute";
 
 const Index = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(toggleDrawerMenu(false));
 	}, []);
+
 
 	return (
 		<ContainerDashboard title="Dashboard">
@@ -41,4 +43,4 @@ const Index = () => {
 	);
 };
 
-export default Index;
+export default authRoute(Index);

@@ -1,7 +1,7 @@
 import { actionTypes } from './action';
 
 export const initState = {
-    isLoggedIn: false,
+    isLoggedIn: null,
     isRegistered: false,
 };
 
@@ -10,7 +10,7 @@ function reducer(state = initState, action) {
         case actionTypes.LOGIN_SUCCESS:
             return {
                 ...state,
-                ...{ isLoggedIn: true },
+                ...{ isLoggedIn: action.isLogin },
             };
             case actionTypes.REGISTER_SUCCESS:
                 return {

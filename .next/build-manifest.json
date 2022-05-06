@@ -19,6 +19,11 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/index.js"
     ],
+    "/404": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/404.js"
+    ],
     "/_app": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
@@ -29,15 +34,25 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/customers": [
+    "/admin/login": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/customers.js"
+      "static/chunks/pages/admin/login.js"
     ],
-    "/merchants": [
+    "/admin/register": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/merchants.js"
+      "static/chunks/pages/admin/register.js"
+    ],
+    "/bids/approved": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/bids/approved.js"
+    ],
+    "/bids/ongoing": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/bids/ongoing.js"
     ]
   },
   "ampFirstPages": []

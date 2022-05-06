@@ -99,7 +99,8 @@ const CustomersPage = () => {
 					</div>
 				</div>
 				<div className="ps-section__content">
-					{ !merchantGetLoading && <TableCustomerItems type={"merchant"} users={merchants} />}
+				<TableCustomerItems type={"merchant"} users={merchants} />
+					{/* { !merchantGetLoading && <TableCustomerItems type={"merchant"} users={merchants} />} */}
 				</div>
 				<div className="ps-section__footer">
 					<p>Show 10 in 30 items.</p>

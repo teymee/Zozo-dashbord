@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 import { register } from "~/store/auth/action";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import privateRoute from "../HOC/privateRoute";
 
 function Register() {
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const {isRegistered} = useSelector(state=>state.auth)
+	const { isRegistered } = useSelector((state) => state.auth);
 	const registerAdmin = (e) => {
 		e.preventDefault();
 		const registerCred = {
@@ -24,15 +25,15 @@ function Register() {
 				state: e.target.state.value,
 				zip_code: e.target.zip_code.value,
 			},
-                  account_type: "admin"
+			account_type: "admin",
 		};
 		console.log("Admin Register");
 		dispatch(register(registerCred));
-		if(isRegistered){
-			setTimeout(()=>{
-				router.push('/')
-			},2000)
-			console.log("user registered")
+		setTimeout(() => {
+			router.push("/");
+		}, 7000);
+		if (isRegistered) {
+			console.log("user registered");
 		}
 	};
 	return (
@@ -90,4 +91,5 @@ function Register() {
 	);
 }
 
-export default Register;
+
+export default privateRoute(Register);

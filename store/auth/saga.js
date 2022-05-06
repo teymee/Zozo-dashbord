@@ -2,9 +2,13 @@ import { all, call, put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 import { notification } from "antd";
 
-import { actionTypes, loginSuccess, logOutSuccess, registerSuccess } from "./action";
+import {
+	actionTypes,
+	loginSuccess,
+	logOutSuccess,
+	registerSuccess,
+} from "./action";
 import { API } from "../API/Api";
-
 
 const modalSuccess = (type) => {
 	notification[type]({
@@ -22,15 +26,14 @@ const modalWarning = (type) => {
 
 const loginAdmin = async (loginCred) => {
 	console.log(loginCred);
-	const url = API.BASE_URL + "login";
+	const url = API.BASE_URL + "/login";
 
-	console.log(url)
+	console.log(url);
 	const data = axios
 		.post(url, loginCred)
 		.then((response) => {
-			console.log(response.data);
-			localStorage.setItem("token", JSON.stringify(response.data.token));
-			
+			localStorage.setItem("token", response.data.token);
+
 			return response.data;
 		})
 		.catch((err) => {
@@ -43,13 +46,13 @@ const registerAdmin = async (registerCred) => {
 	console.log(registerCred);
 	// const url = "https://zozo-auction.herokuapp.com/api/v1/merchant/create"
 	const url = API.ADMIN_BASE_URL + "/admin/create";
-	console.log(url)
+	console.log(url);
 
 	const data = axios
 		.post(url, registerCred)
 		.then((response) => {
 			console.log(response.data.token);
-			localStorage.setItem("token", JSON.stringify(response.data.token));
+			localStorage.setItem("token", response.data.token);
 			return response.data;
 		})
 		.catch((err) => {
@@ -58,13 +61,11 @@ const registerAdmin = async (registerCred) => {
 	return data;
 };
 
-
-
 function* loginSaga(payload) {
 	try {
 		const isLogin = yield call(loginAdmin, payload.loginCred);
 		if (isLogin) {
-			yield put(loginSuccess());
+			yield put(loginSuccess(isLogin));
 			modalSuccess("success");
 		}
 	} catch (err) {
@@ -74,10 +75,10 @@ function* loginSaga(payload) {
 
 function* registerSaga(payload) {
 	try {
-        console.log(payload.registerCred)
+		console.log(payload.registerCred);
 		const isRegistered = yield call(registerAdmin, payload.registerCred);
 		if (isRegistered) {
-			yield put(registerSuccess());
+			yield put(registerSuccess(isRegistered));
 			modalSuccess("success");
 		}
 	} catch (err) {
@@ -96,6 +97,6 @@ function* logOutSaga() {
 
 export default function* rootSaga() {
 	yield all([takeEvery(actionTypes.LOGIN_REQUEST, loginSaga)]);
-    yield all([takeEvery(actionTypes.REGISTER_REQUEST, registerSaga)]);
+	yield all([takeEvery(actionTypes.REGISTER_REQUEST, registerSaga)]);
 	yield all([takeEvery(actionTypes.LOGOUT, logOutSaga)]);
 }
