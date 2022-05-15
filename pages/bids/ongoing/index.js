@@ -6,13 +6,14 @@ import Pagination from "~/components/elements/basic/Pagination";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
 import BidTable from "~/components/shared/tables/BidTable";
+import protectedRoute from "~/pages/HOC/protectedRoute";
 
-function PendingBids() {
+function OngoingBids() {
 	return (
 		<ContainerDefault title="Ongoing Bids">
-			<HeaderDashboard
-				title="Products"
-				description="Martfury Product Listing "
+				<HeaderDashboard
+				title="Ongoing"
+				description="List of Ongoing Auctions"
 			/>
 			<section className="ps-items-listing">
 				<div className="ps-section__actions">
@@ -97,4 +98,4 @@ function PendingBids() {
 	);
 }
 
-export default PendingBids;
+export default protectedRoute(OngoingBids);

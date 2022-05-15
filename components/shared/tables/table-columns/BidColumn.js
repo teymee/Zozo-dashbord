@@ -7,9 +7,9 @@ import styles from "../TableExtraStyles/extraStyles.module.css";
 
 function BidColumn({ bidEvent, num, type }) {
 	const dispatch = useDispatch();
-	console.log(bidEvent);
+	
 
-	console.log(type)
+
 	const approveEvent = () => {
 		console.log("approve event");
 		dispatch(actionApproveEvent(bidEvent.id));
@@ -20,9 +20,11 @@ function BidColumn({ bidEvent, num, type }) {
 		dispatch(actionCancelEvent(bidEvent.id));
 	};
 
-	let button;
-	 if (type === "'pending") {
-		button = (
+	let button
+	if(type === 'approved'){
+		button = null
+	}else if (type === "pending") {
+	button = (
 			<>
 				<td>
 					<button onClick={approveEvent} className={styles.createEventButton}>
@@ -36,19 +38,15 @@ function BidColumn({ bidEvent, num, type }) {
 				</td>
 			</>
 		);
-	} else if (type === "'approved" || type === "'ongoing") {
-		console.log("approved")
+	} else if (type === "completed") {
 		button = (
 			<td>
-				<button onClick={cancelEvent} className={styles.declineEventButton}>
-					Delcine
-				</button>
+				<strong>{bidEvent.winner === null ? "No Winner" :  `${bidEvent.winner.customer.account.first_name} ${bidEvent.winner.customer.account.last_name}`  }</strong>
 			</td>
 		);
-		console.log( button)
 	}
+	
 
-	console.log(button)
 
 	return (
 		<tr>
@@ -56,29 +54,28 @@ function BidColumn({ bidEvent, num, type }) {
 			<td>
 				<strong>{bidEvent.product.name}</strong>
 			</td>
-			<td>{dateFormat(bidEvent.start_time)}</td>
+
 			<td>{bidEvent.access_amount}</td>
 			<td>{bidEvent.minimum_amount}</td>
-			<td>{dateFormat(bidEvent.createdAt)}</td>
+			<td>{dateFormat(bidEvent.start_time)}</td>
+			<td>{dateFormat(bidEvent.end_time)}</td>
 			{/* <td>{badgeView}</td> */}
 
+			{/* <td>
+				<button onClick={approveEvent} className={styles.createEventButton}>
+					Approve
+				</button>
+			</td>
 			<td>
-					<button onClick={approveEvent} className={styles.createEventButton}>
-						Approve
-					</button>
-				</td>
-				<td>
-					<button onClick={cancelEvent} className={styles.declineEventButton}>
-						Delcine
-					</button>
-				</td>
+				<button onClick={cancelEvent} className={styles.declineEventButton}>
+					Delcine
+				</button>
+			</td> */}
 
 			{button}
 			<td>
-				
-				<DropdownAction type="bidEvent" id={bidEvent.id} key={num + 1} />
+				<DropdownAction type={type} id={bidEvent.id} key={num + 1} />
 			</td>
-
 		</tr>
 	);
 }

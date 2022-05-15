@@ -1,6 +1,7 @@
 import axios from "axios";
 import { all, call, put, takeEvery } from "redux-saga/effects";
 import { API } from "../API/Api";
+import { notification } from "antd";
 import {
 	actionAdminFetchAuctionsSuccess,
 	actionApproveEventSuccess,
@@ -13,6 +14,13 @@ const config = {
 	headers: {
 		Authorization: "Bearer " + API.TOKEN,
 	},
+};
+
+const modalSuccess= (type) => {
+	notification[type]({
+		message: "Succesfull",
+		description: "Auction has been Approved",
+	});
 };
 
 //POST CREAT BID EVENT
@@ -131,6 +139,8 @@ function* approveBidEvent(payload) {
 		const isApproved = yield call(sagaApproveBidEvent, payload.event_id);
 		console.log(isApproved);
 		yield put(actionApproveEventSuccess(isApproved));
+		modalSuccess("success")
+		
 	} catch (err) {
 		console.log(err);
 	}

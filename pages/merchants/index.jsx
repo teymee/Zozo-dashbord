@@ -9,6 +9,7 @@ import { toggleDrawerMenu } from "~/store/app/action";
 import { Select } from "antd";
 import { useSelector } from "react-redux";
 import { actionGetAllMechants } from "~/store/merchant/action";
+import protectedRoute from "../HOC/protectedRoute";
 
 const { Option } = Select;
 const CustomersPage = () => {
@@ -99,8 +100,8 @@ const CustomersPage = () => {
 					</div>
 				</div>
 				<div className="ps-section__content">
-				<TableCustomerItems type={"merchant"} users={merchants} />
-					{/* { !merchantGetLoading && <TableCustomerItems type={"merchant"} users={merchants} />} */}
+				{/* <TableCustomerItems type={"merchant"} users={merchants} /> */}
+					{ !merchantGetLoading && <TableCustomerItems type="merchant" users={merchants} />}
 				</div>
 				<div className="ps-section__footer">
 					<p>Show 10 in 30 items.</p>
@@ -110,4 +111,4 @@ const CustomersPage = () => {
 		</ContainerDefault>
 	);
 };
-export default connect((state) => state.app)(CustomersPage);
+export default protectedRoute(connect((state) => state.app)(CustomersPage));

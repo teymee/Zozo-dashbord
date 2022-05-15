@@ -4,11 +4,10 @@ import { useDispatch } from "react-redux";
 import { actionAdminFetchAuctions } from "~/store/bid/action";
 import BidColumn from "./table-columns/BidColumn";
 
-function BidTable({type}) {
+function BidTable({ type }) {
 	const dispatch = useDispatch();
 	const { bids, bidGetLoading } = useSelector((state) => state.bid);
 
-	
 	useEffect(() => {
 		dispatch(actionAdminFetchAuctions(type));
 	}, []);
@@ -18,8 +17,28 @@ function BidTable({type}) {
 	let bidEvents;
 	if (!bidGetLoading) {
 		bidEvents = bids.map((bidEvent, index) => {
-			return <BidColumn type={type} bidEvent={bidEvent} num={index} key={index} />;
+			return (
+				<BidColumn type={type} bidEvent={bidEvent} num={index} key={index} />
+			);
 		});
+	}
+
+	let tableHead;
+	if (type === "approved") {
+		tableHead = null;
+	} else if (type === "pending") {
+		tableHead = (
+			<>
+				<th>Approve</th>
+				<th>Decline</th>
+			</>
+		);
+	}else if (type === "completed") {
+		tableHead = (
+			<>
+				<th>Winner</th>
+			</>
+		);
 	}
 
 	return (
@@ -29,13 +48,13 @@ function BidTable({type}) {
 					<tr>
 						<th>ID</th>
 						<th>Name</th>
-						<th>Start Time</th>
+
 						<th>Access Amount</th>
 						<th>Minimum Amount</th>
 
-						<th> Created Date</th>
-						<th>Approve</th>
-						<th>Decline</th>
+						<th>Start Time</th>
+						<th>End Time</th>
+						{tableHead}
 					</tr>
 				</thead>
 				<tbody>{!bidGetLoading && bidEvents}</tbody>

@@ -1,8 +1,15 @@
 import { actionTypes } from './action';
 
+const ISSERVER = typeof window === "undefined";
+let token;
+if (!ISSERVER) {
+	// Access localStorage
+	token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
+}
 export const initState = {
-    isLoggedIn: null,
+    isLoggedIn: false,
     isRegistered: false,
+    jwt:token
 };
 
 function reducer(state = initState, action) {
@@ -10,7 +17,7 @@ function reducer(state = initState, action) {
         case actionTypes.LOGIN_SUCCESS:
             return {
                 ...state,
-                ...{ isLoggedIn: action.isLogin },
+                ...{ isLoggedIn: true, jwt:action.isLogin.token },
             };
             case actionTypes.REGISTER_SUCCESS:
                 return {

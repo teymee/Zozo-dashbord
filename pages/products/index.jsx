@@ -7,6 +7,7 @@ import Link from 'next/link';
 import HeaderDashboard from '~/components/shared/headers/HeaderDashboard';
 import { connect, useDispatch } from 'react-redux';
 import { toggleDrawerMenu } from '~/store/app/action';
+import protectedRoute from '../HOC/protectedRoute';
 
 const { Option } = Select;
 const ProductPage = () => {
@@ -109,4 +110,4 @@ const ProductPage = () => {
         </ContainerDefault>
     );
 };
-export default connect((state) => state.app)(ProductPage);
+export default protectedRoute(connect((state) => state.app)(ProductPage));

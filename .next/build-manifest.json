@@ -34,15 +34,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/admin/register": [
+    "/admin/login": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/admin/register.js"
+      "static/chunks/pages/admin/login.js"
     ],
-    "/merchants": [
+    "/categories": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/merchants.js"
+      "static/chunks/pages/categories.js"
     ]
   },
   "ampFirstPages": []

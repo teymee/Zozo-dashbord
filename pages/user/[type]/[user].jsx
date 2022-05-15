@@ -9,6 +9,7 @@ import { fetchCategory } from "~/store/category/action";
 import { useRouter } from "next/router";
 import { actionGetSingleMechant } from "~/store/merchant/action";
 import { actionGetSingleCustomer } from "~/store/customer/action";
+import protectedRoute from "~/pages/HOC/protectedRoute";
 
 const ViewUser = () => {
 	const dispatch = useDispatch();
@@ -325,4 +326,4 @@ const ViewUser = () => {
 		</ContainerDefault>
 	);
 };
-export default connect((state) => state.app)(ViewUser);
+export default protectedRoute(connect((state) => state.app)(ViewUser));

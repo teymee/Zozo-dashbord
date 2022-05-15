@@ -8,6 +8,7 @@ import HeaderDashboard from '~/components/shared/headers/HeaderDashboard';
 import { connect, useDispatch } from 'react-redux';
 import { toggleDrawerMenu } from '~/store/app/action';
 import { fetchCategory } from '~/store/category/action';
+import protectedRoute from '../HOC/protectedRoute';
 
 const CategoriesPage = () => {
     const dispatch = useDispatch();
@@ -42,4 +43,4 @@ const CategoriesPage = () => {
     );
 };
 
-export default connect((state) => state.app)(CategoriesPage);
+export default protectedRoute(connect((state) => state.app)(CategoriesPage));

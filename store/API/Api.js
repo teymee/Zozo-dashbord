@@ -6,11 +6,11 @@ if (!ISSERVER) {
 }
 
 export const API = {
-	ADMIN_BASE_URL: "http://smart-park.xyz/api/v1/admin",
-	BASE_URL: "http://smart-park.xyz/api/v1",
-	MERCHANT_ADMIN_BASE_URL: "http://smart-park.xyz/api/v1/merchant",
+	ADMIN_BASE_URL: "https://smart-park.xyz/api/v1/admin",
+	BASE_URL: "https://smart-park.xyz/api/v1",
+	MERCHANT_ADMIN_BASE_URL: "https://smart-park.xyz/api/v1/merchant",
 	TOKEN: token,
-	};
+};
 
 export const dateFormat = (timeFormat) => {
 	const event = new Date(timeFormat);
@@ -19,6 +19,6 @@ export const dateFormat = (timeFormat) => {
 	const totalStringLength = time.length;
 	const stringToSlice = time.indexOf("G");
 	const finalDate = time.slice(0, stringToSlice);
-	console.log(totalStringLength)
+
 	return finalDate;
 };

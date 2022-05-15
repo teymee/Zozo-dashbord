@@ -9,6 +9,7 @@ import { toggleDrawerMenu } from "~/store/app/action";
 import CardTopCountries from "~/components/shared/cards/CardTopCountries";
 import styles from "./dashboardExtrastyle.module.css";
 import authRoute from "./HOC/authRoute";
+import protectedRoute from "./HOC/protectedRoute";
 
 const Index = () => {
 	const dispatch = useDispatch();
@@ -43,4 +44,4 @@ const Index = () => {
 	);
 };
 
-export default authRoute(Index);
+export default protectedRoute(Index);

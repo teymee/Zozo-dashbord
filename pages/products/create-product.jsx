@@ -7,6 +7,7 @@ import { addProduct } from "~/store/product/action";
 import { useSelector } from "react-redux";
 import { fetchCategory } from "~/store/category/action";
 import Router  from "next/router";
+import protectedRoute from "../HOC/protectedRoute";
 
 
 
@@ -383,4 +384,4 @@ const CreateProductPage = () => {
 		</ContainerDefault>
 	);
 };
-export default connect((state) => state.app)(CreateProductPage);
+export default protectedRoute(connect((state) => state.app)(CreateProductPage));

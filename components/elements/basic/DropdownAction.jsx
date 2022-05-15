@@ -7,7 +7,7 @@ import Link from "next/link";
 const DropdownAction = ({ type, id }) => {
 	const dispatch = useDispatch();
 	console.log(type)
-	let url
+	let url =""
 	if(type === "customer"){
 		url = '/user/customer/'+id
 	}else if(type === "merchant"){

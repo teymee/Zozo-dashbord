@@ -8,15 +8,16 @@ const TableCustomerItems = ({ users, type }) => {
 	const { customerGetLoading } = useSelector((state) => state.customer);
 
 	let userList;
-	let userss = []
+	let userss = [];
 	if (!customerGetLoading) {
-		userss = users
+		userss = users;
 		userList = userss.map((user, index) => {
 			let data;
 
 			if (type === "merchant") {
 				data = <MerchantColumn user={user} key={index} num={index} />;
 			} else if (type === "customer") {
+				console.log(userss);
 				data = <CustomerColumn user={user} key={index} num={index} />;
 			}
 			return data;

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "~/store/auth/action";
 import { useRouter } from "next/router";
 import styles from "./auth.module.css";
-import privateRoute from "../HOC/privateRoute";
+import protectedRoute from "../HOC/protectedRoute";
+import authRoute from "../HOC/authRoute";
 
 function LoginAdmin() {
 	const router = useRouter();
@@ -15,14 +16,10 @@ function LoginAdmin() {
 			email: e.target.email.value,
 			password: e.target.password.value,
 		};
-
-		dispatch(login(loginCred));
-		setTimeout(() => {
-			router.push("/");
-		}, 7000);
+		console.log("Admin Login");
+		dispatch(login({ loginCred, router }));
+		console.log(isLoggedIn);
 	};
-
-	
 
 	return (
 		<div className={styles.authForm}>
@@ -45,5 +42,5 @@ function LoginAdmin() {
 		</div>
 	);
 }
-
-export default privateRoute(LoginAdmin);
+export default authRoute(LoginAdmin);
+// export default protectedRoute(LoginAdmin);

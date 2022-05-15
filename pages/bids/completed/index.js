@@ -6,23 +6,24 @@ import Pagination from "~/components/elements/basic/Pagination";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
 import BidTable from "~/components/shared/tables/BidTable";
+import protectedRoute from "~/pages/HOC/protectedRoute";
 
-function PendingBids() {
+function CompletedBids() {
 	return (
 		<ContainerDefault title="Compeleted Bids">
-			<HeaderDashboard
-				title="Products"
-				description="Martfury Product Listing "
+		<HeaderDashboard
+				title="Completed"
+				description="List of Completed Auctions"
 			/>
 			<section className="ps-items-listing">
-				<div className="ps-section__actions">
+				{/* <div className="ps-section__actions">
 					<Link href="/products/create-product">
 						<a className="ps-btn success">
 							<i className="icon icon-plus mr-2" />
 							New Product
 						</a>
 					</Link>
-				</div>
+				</div> */}
 				<div className="ps-section__header">
 					<div className="ps-section__filter">
 						<form className="ps-form--filter" action="index.html" method="get">
@@ -97,4 +98,4 @@ function PendingBids() {
 	);
 }
 
-export default PendingBids;
+export default protectedRoute(CompletedBids);

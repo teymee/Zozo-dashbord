@@ -9,6 +9,7 @@ import { toggleDrawerMenu } from "~/store/app/action";
 import { Select } from "antd";
 import { useSelector } from "react-redux";
 import { actionGetAllCustomers } from "~/store/customer/action";
+import protectedRoute from "../HOC/protectedRoute";
 
 const { Option } = Select;
 const CustomersPage = () => {
@@ -109,4 +110,4 @@ const CustomersPage = () => {
 		</ContainerDefault>
 	);
 };
-export default connect((state) => state.app)(CustomersPage);
+export default protectedRoute(connect((state) => state.app)(CustomersPage));

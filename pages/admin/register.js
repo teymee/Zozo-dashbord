@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { register } from "~/store/auth/action";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import privateRoute from "../HOC/privateRoute";
+import protectedRoute from "../HOC/protectedRoute";
+import authRoute from "../HOC/authRoute";
 
 function Register() {
 	const dispatch = useDispatch();
@@ -28,13 +29,8 @@ function Register() {
 			account_type: "admin",
 		};
 		console.log("Admin Register");
-		dispatch(register(registerCred));
-		setTimeout(() => {
-			router.push("/");
-		}, 7000);
-		if (isRegistered) {
-			console.log("user registered");
-		}
+		dispatch(register({registerCred,router}));
+	
 	};
 	return (
 		<div className={styles.authForm}>
@@ -92,4 +88,4 @@ function Register() {
 }
 
 
-export default privateRoute(Register);
+export default authRoute(Register);
